@@ -2,6 +2,7 @@
 #include <vector>
 #include <stack>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ void forrange()
         cout << *iter << ' ';
     }
     cout << endl;
+
 }
 
 void algo()

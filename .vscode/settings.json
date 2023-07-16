@@ -2,5 +2,13 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "C_Cpp.default.compilerArgs": [
+        "-std=c++11",
+        "-stdlib=libstdc++",
+        "-Wc++11-extensions"
+    ],
+    "files.associations": {
+        "unordered_map": "cpp"
+    }
 }

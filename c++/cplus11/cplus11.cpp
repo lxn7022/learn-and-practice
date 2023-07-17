@@ -142,6 +142,71 @@ void UseLambda()
              { cout << n << " "; });
     cout << endl;
 }
+
+//----------------------------------
+struct A
+{
+    A() = default;
+    A(const A &) = delete;
+    A &operator=(const A &) = delete;
+    int a;
+    A(int i) { a = i; }
+};
+
+void UseDefaultDelete()
+{
+    cout << __FILE__ << ":" << __FUNCTION__ << endl;
+
+    A a1;
+    // A a2 = a1; // 错误，拷贝构造函数被禁用
+    A a3;
+    // a3 = a1; // 错误，拷贝赋值操作符被禁用
+}
+
+//-----------------------------------
+class Alice
+{
+public:
+    Alice(int size) : size_(size)
+    {
+        data_ = new int[size];
+    }
+    Alice() {}
+    Alice(const Alice &a)
+    {
+        size_ = a.size_;
+        data_ = new int[size_];
+        // need memcpy
+        cout << "copy: Alice(const Alice &a)" << endl;
+    }
+    Alice(Alice &&a)
+    {
+        this->data_ = a.data_;
+        a.data_ = nullptr;
+        cout << "move: Alice(Alice &&a)" << endl;
+    }
+    ~Alice()
+    {
+        if (data_ != nullptr)
+        {
+            delete[] data_;
+        }
+    }
+    int *data_;
+    int size_;
+};
+
+void UseMove()
+{
+    cout << __FILE__ << ":" << __FUNCTION__ << endl;
+
+    Alice a(10);
+    Alice b = a;
+    Alice c = std::move(a); // 调用移动构造函数
+}
+
+//----------------------------
+
 void algo()
 {
     cout << __FILE__ << ":" << __FUNCTION__ << endl;
@@ -158,6 +223,8 @@ int main()
     UseBind();
     UseLambda();
     UseForAuto();
+    UseDefaultDelete();
+    UseMove();
     algo();
     return 0;
 }

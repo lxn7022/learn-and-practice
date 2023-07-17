@@ -9,6 +9,7 @@
         "-Wc++11-extensions"
     ],
     "files.associations": {
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "iostream": "cpp"
     }
 }

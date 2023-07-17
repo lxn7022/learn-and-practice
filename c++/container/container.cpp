@@ -150,6 +150,7 @@ void UseUnorderedMap()
     std::unordered_map<string, int> unomap; // 创建一个key为string类型，value为int类型的unordered_map
     unomap.emplace(name, id);               // 使用变量方式，插入一个元素
     unomap.emplace("bob", 10002);           // 也可以直接写上key和value的值
+    unomap.insert({"kitty", 10003});
 
     for (auto x : unomap) // 遍历整个map，输出key及其对应的value值
         cout << x.first << ": " << x.second << endl;

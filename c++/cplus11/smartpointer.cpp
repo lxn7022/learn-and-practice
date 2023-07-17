@@ -166,7 +166,6 @@ void UseWeakPtr()
 
 int main()
 {
-
     UseAutoPtr();
     UseUniquePtr();
     UseSharedPtr();

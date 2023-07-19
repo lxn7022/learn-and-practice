@@ -5,18 +5,14 @@ CFLAGS =  -std=c++11 -stdlib=libstdc++ -Wc++11-extensions -fcolor-diagnostics -f
 INC = -I./
 LIB = -L./ -lm -lstdc++ 
 
-App1 = container
-App2 = findmaxcnt
+App1 = main
 
-Target = ${App1} ${App2}
+Target = ${App1}
 
 build: ${Target}
 
-${App1} : ${App1}.o                  
-	${CC} ${App1}.o ${CFLAGS} ${INC} ${LIB} -o ${App1}
-
-${App2} : ${App2}.o                  
-	${CC} ${App2}.o ${CFLAGS} ${INC} ${LIB} -o ${App2}
+${App1} : ${App1}.o ring_buffer_s.o              
+	${CC} ${App1}.o ring_buffer_s.o ${CFLAGS} ${INC} ${LIB} -o ${App1}
 
 %.o:%.cpp
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

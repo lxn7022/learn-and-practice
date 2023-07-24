@@ -1,15 +1,10 @@
+import random
+from tenacity import wait_fixed, stop_after_attempt, retry_if_result
+import tenacity
 import time
 import timeit
 import wrapt
 from functools import wraps
-
-
-def logging(level):
-    @wrapt.decorator
-    def wrapper(wrapped, instance, args, kwargs):
-        print("[{}]: enter {}()".format(level, wrapped.__name__))
-        return wrapped(*args, **kwargs)
-    return wrapper
 
 
 def clock(func):
@@ -23,6 +18,14 @@ def clock(func):
               (func_name, arg_str, res, run_time))
         return res
     return clocked
+
+
+def logging(level):
+    @wrapt.decorator
+    def wrapper(wrapped, instance, args, kwargs):
+        print("[{}]: enter {}()".format(level, wrapped.__name__))
+        return wrapped(*args, **kwargs)
+    return wrapper
 
 
 def task_retry(retry_count: int = 5, timeout: int = 2, errcode: int = 0):
@@ -52,9 +55,34 @@ def task_retry(retry_count: int = 5, timeout: int = 2, errcode: int = 0):
 
 @clock
 @logging(level="INFO")
-@task_retry(retry_count=3, timeout=1, errcode=1)
+@task_retry(retry_count=3, timeout=2, errcode=-1)
 def dotask():
     return 0
 
 
-ret = dotask()
+# -------------------------
+
+
+def return_last_value(retry_state):
+    print("执行回调函数")
+    return retry_state.outcome.result()  # 表示返回原函数的返回值
+
+
+def err_code(value):
+    return value in (-1, -2, -3)
+
+
+@tenacity.retry(wait=wait_fixed(2),  # 重试前等待2秒
+                stop=stop_after_attempt(3),  # 总共重拾3次
+                retry_error_callback=return_last_value,  # 最后一次重试失败后的回调函数
+                retry=retry_if_result(err_code))  # 碰到指定错误码时回调
+def dotask2():
+    rets = [0, -1]
+    ret = rets[random.randrange(0, 2)]
+    print(f"dotask2: ret={ret} retry... ")
+    return ret
+
+
+if __name__ == "__main__":
+    ret = dotask()
+    dotask2()

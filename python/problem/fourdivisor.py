@@ -37,7 +37,6 @@ class Solution:
             if divisor != None:
                 divisors_all.append(divisor[0])
                 divisors_all.append(divisor[1])
-        print(divisors_all)
         # 长度<=2，特殊处理
         len_divisors_all = len(divisors_all)
         if len_divisors_all < 2:
@@ -64,4 +63,4 @@ def test_Solution():
 
 
 if __name__ == '__main__':
-    pytest.main(["-s", "fourdivisor.py"])
+    pytest.main(["-v", "-s", "fourdivisor.py"])

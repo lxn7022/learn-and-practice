@@ -61,10 +61,10 @@ def dotask():
     return 0
 
 # --------------------------
-# 设计模式：singleton
 
 
 def singleton(cls):
+    """设计模式: singleton"""
     instances = {}
 
     def wrapper(*args, **kwargs):
@@ -73,11 +73,11 @@ def singleton(cls):
         return instances[cls]
     return wrapper
 
-# 通过装饰器将一个类变为单例
-
 
 @singleton
 class cls:
+    """通过装饰器将一个类变为单例"""
+
     def func(self):
         pass
 

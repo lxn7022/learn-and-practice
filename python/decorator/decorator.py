@@ -1,3 +1,4 @@
+import pytest
 import random
 from tenacity import wait_fixed, stop_after_attempt, retry_if_result
 import tenacity
@@ -59,6 +60,32 @@ def task_retry(retry_count: int = 5, timeout: int = 2, errcode: int = 0):
 def dotask():
     return 0
 
+# --------------------------
+# 设计模式：singleton
+
+
+def singleton(cls):
+    instances = {}
+
+    def wrapper(*args, **kwargs):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kwargs)
+        return instances[cls]
+    return wrapper
+
+# 通过装饰器将一个类变为单例
+
+
+@singleton
+class cls:
+    def func(self):
+        pass
+
+
+def test_singleton():
+    a = cls()
+    b = cls()
+    assert a is b
 
 # -------------------------
 
@@ -86,3 +113,4 @@ def dotask2():
 if __name__ == "__main__":
     ret = dotask()
     dotask2()
+    pytest.main(["-v", "-s", "decorator.py"])

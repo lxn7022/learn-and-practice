@@ -54,7 +54,7 @@ class Go:
 
     # 清空搜索记录
     def clear_visit(self):
-        self.visit = [[0 for i in range(N)] for j in range(8)]
+        self.visit = [[0 for i in range(N)] for j in range(N)]
         self.isalive_flag = 0
 
     # 有无“气”的判断，有气返回1，无气返回0

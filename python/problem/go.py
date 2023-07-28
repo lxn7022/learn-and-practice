@@ -1,3 +1,4 @@
+# encoding: utf-8
 """
 背景介绍
 1.围棋棋盘由n行和n列构成，形成n2个交叉点，简称为“点”;
@@ -79,7 +80,7 @@ class Go:
                 continue  # 如果是边框，跳过此方向
             elif self.visit[dx][dy] == 0:  # 判断是否此点搜索过
                 if self.checkerboard_data[dx][dy] == 0:
-                    isalive_flag = 1
+                    self.isalive_flag = 1
                     return  # 此点为空位置，即原棋子有气，停止搜索
                 elif self.checkerboard_data[dx][dy] == - self.checkerboard_data[x][y]:
                     continue  # 对方棋子，跳过此方向
@@ -122,15 +123,25 @@ def test_Go():
                [-1, 1, 0, 0, 0, 0],
                [1, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0]]
+    matrix3 = [[0, 0, 0, 0, 0, 0],
+               [1, 0, 1, 0, 0, 0],
+               [-1, -1, 1, 0, 0, 0],
+               [-1, -1, 1, 0, 0, 0],
+               [1, 1, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0]]
 
-    for matrix in [matrix1, matrix2]:
+    def _move(matrix, x, y, player):
         print("#-------------------------")
         go.set_matrix(matrix)
         print(go)
-        go.set_point(2, 1, BLACK)
+        go.set_point(x, y, BLACK)
         go.take_out(BLACK)
         print("#-----")
         print(go)
+
+    _move(matrix1, 3, 2, BLACK)
+    _move(matrix2, 2, 1, BLACK)
+    _move(matrix3, 1, 1, BLACK)
 
 
 if __name__ == '__main__':

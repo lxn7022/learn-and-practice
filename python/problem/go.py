@@ -12,6 +12,8 @@
 
 算法要求
 现给定n行n列的围棋棋盘残局和即将下子的黑子下子点p，请计算下子后下一轮白子下子前的棋盘残局并返回。
+题目链接：
+https://docs.qq.com/doc/DWmhleHdUcnVydFFH
 """
 
 

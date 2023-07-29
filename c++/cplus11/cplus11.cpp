@@ -131,6 +131,16 @@ void UseForAuto()
         cout << *iter << ' ';
     }
     cout << endl;
+
+    //  容器和数组都可以使用
+    std::vector<int> vect{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    for (auto n : vect)
+        std::cout << n;
+    cout << endl;
+    int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    for (auto n : arr)
+        std::cout << n;
+    cout << endl;
 }
 void UseLambda()
 {

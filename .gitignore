@@ -2,5 +2,12 @@
 
 __pycache__
 .pytest_cache
-main
 
+main
+cplus11
+lambda
+smartpointer
+function-template
+varargs
+
+*.o

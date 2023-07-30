@@ -8,6 +8,7 @@
         "-stdlib=libstdc++",
         "-Wc++11-extensions"
     ],
+    "C_Cpp.formatting": "clangFormat",
     "files.associations": {
         "unordered_map": "cpp",
         "iostream": "cpp",

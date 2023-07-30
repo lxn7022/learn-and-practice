@@ -8,8 +8,11 @@ cplus11
 lambda
 smartpointer
 function-template
+class-template
 varargs
 friend-class 
 friend-function
+vec2d
+line
 
 *.o

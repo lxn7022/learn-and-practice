@@ -9,5 +9,7 @@ lambda
 smartpointer
 function-template
 varargs
+friend-class 
+friend-function
 
 *.o

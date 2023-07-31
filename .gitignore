@@ -19,5 +19,6 @@ line
 use-fstream
 use-sstream
 use-iostream
-
+use-namespace
+`1
 

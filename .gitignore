@@ -2,6 +2,8 @@
 
 __pycache__
 .pytest_cache
+*.o
+*.output
 
 main
 cplus11
@@ -14,5 +16,8 @@ friend-class
 friend-function
 vec2d
 line
+use-fstream
+use-sstream
+use-iostream
 
-*.o
+

@@ -1,0 +1,3 @@
+alice 12 female
+bob 13 male
+kitty 15 female

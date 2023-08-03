@@ -3,6 +3,10 @@ import random
 from threading import Timer
 import time
 
+# 参考文档：
+# https://docs.qq.com/doc/DWmhleHdUcnVydFFH
+#
+
 
 class Queue:
     def __init__(self, Q, q, low_threshold, high_threshold) -> None:

@@ -5,8 +5,9 @@ INC = -I./
 LIB = -L./ -lm -lstdc++ 
 
 App1 = vector-and-iterator
+App2 = ksum
 
-Target = ${App1}
+Target = ${App1} ${App2}
 
 build: ${Target}
 

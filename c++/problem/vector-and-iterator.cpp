@@ -24,6 +24,11 @@ struct Point
     }
 };
 
+/*
+*  问题：给定一个vector，保留每个元素的迭代器指针，
+*  如果vector中的元素被删除后，是否还能通过迭代器指针访问到？
+*/
+
 // visit the deleted elem by iterator
 void visit_deleted_elem()
 {

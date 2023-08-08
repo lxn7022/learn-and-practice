@@ -9,8 +9,77 @@
 using namespace std;
 
 
+//链接：https://leetcode.cn/problems/1fGaJU/solutions/941911/jian-dan-yi-dong-javac-pythonjs-san-shu-nu6el/
+//给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a ，b ，c ，
+//使得 a + b + c = 0 ？请找出所有和为 target 且 不重复 的三元组。
+
+// displayCombs 输出组合结果
+void displayCombs(vector<vector<int>> &combs)
+{
+       for (auto &vec:combs){
+        cout << "[";
+        for (auto &it : vec)
+            cout << it <<",";
+        cout << "]" << endl;
+    } 
+
+}
+
+
+vector<vector<int>> threeSum(vector<int>& nums, int target) {
+        if (nums.size() < 3) return {};
+        vector<vector<int>> res;
+
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size() - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            // 在 i + 1 ... nums.length - 1 中查找相加等于 -nums[i] 的两个数
+            int _target = target - nums[i];
+            int left = i + 1, right = nums.size() - 1;
+            while (left < right) {
+                int sum = nums[left] + nums[right];
+                if (sum == _target) {
+                    res.push_back({nums[i], nums[left], nums[right]});
+                    /*
+                        下面的代码相当于：
+                        while (left < right) {
+                            // 不管前后相不相等，left 都要往前走
+                            left++;
+                            if (nums[left - 1] != nums[left]) break;
+                        }
+                        while (left < right) {
+                            // 不管前后相不相等，right 都要往后走
+                            right--;
+                            if (nums[right + 1] != nums[right]) break;
+                        }
+                     */
+                    // 去重
+                    while (left < right && nums[left] == nums[++left]);
+                    while (left < right && nums[right] == nums[--right]);
+                } else if (sum < _target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+        return res;
+    }
+void test_threeSum()
+{
+    cout << __FILE__ << ":" << __FUNCTION__ << endl;
+
+    vector<int> candidats = {-1,0,1,2,-1,-4};
+    int target = 0;
+    auto result = threeSum(candidats, target);
+    displayCombs(result);
+}
+
+
+
 //原文链接：https://blog.csdn.net/ffj0721/article/details/84256818ff
-//LeetCode 之 n 个数之和（Sum n）
+//
 /**
  * 
  * @param nums
@@ -84,17 +153,6 @@ vector<vector<int> > combinationSum(vector<int> &nums, int target)
     return combs;
 }
 
-void displayCombs(vector<vector<int>> &combs)
-{
-       for (auto &vec:combs){
-        cout << "[";
-        for (auto &it : vec)
-            cout << it <<",";
-        cout << "]" << endl;
-    } 
-
-}
-
 void test_kSum()
 {
     cout << __FILE__ << ":" << __FUNCTION__ << endl;
@@ -107,6 +165,7 @@ void test_kSum()
 
 int main()
 {
+    test_threeSum();
     test_kSum();
     return 0;
 }

@@ -4,6 +4,7 @@ __pycache__
 .pytest_cache
 *.o
 *.output
+.coverage
 
 main
 cplus11

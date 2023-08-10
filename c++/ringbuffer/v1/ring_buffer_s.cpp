@@ -7,28 +7,28 @@
 #include <algorithm>
 #include "ring_buffer_s.h"
 
-inline ring_buffer_s::ring_buffer_s(const size_t capacity)
+ring_buffer_s::ring_buffer_s(const size_t capacity)
     : front_(0), rear_(0), size_(0), capacity_(capacity)
 {
     data_ = new uint8_t[capacity];
 }
 
-inline ring_buffer_s::~ring_buffer_s()
+ring_buffer_s::~ring_buffer_s()
 {
     delete[] data_;
 }
 
-inline size_t ring_buffer_s::size() const
+size_t ring_buffer_s::size() const
 {
     return size_;
 }
 
-inline size_t ring_buffer_s::capacity() const
+size_t ring_buffer_s::capacity() const
 {
     return capacity_;
 }
 
-inline size_t ring_buffer_s::write(const void *data, const size_t bytes)
+size_t ring_buffer_s::write(const void *data, const size_t bytes)
 {
     if (bytes == 0)
         return 0;
@@ -66,7 +66,7 @@ inline size_t ring_buffer_s::write(const void *data, const size_t bytes)
     return bytes_to_write;
 }
 
-inline size_t ring_buffer_s::read(void *data, const size_t bytes)
+size_t ring_buffer_s::read(void *data, const size_t bytes)
 {
     if (bytes == 0)
         return 0;

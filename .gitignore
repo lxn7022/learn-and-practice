@@ -24,4 +24,6 @@ use-fstream
 use-sstream
 use-iostream
 use-namespace
+default-delete
+
 

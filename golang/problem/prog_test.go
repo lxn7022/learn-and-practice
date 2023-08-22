@@ -1,4 +1,4 @@
-package golang
+package problem
 
 import (
 	"fmt"
@@ -194,9 +194,6 @@ func TestGetNearestCoord(t *testing.T) {
 		{"function:GetNearestCoord ",
 			args{[]Coord{{1, 2}, {3, 4}, {7, 8}}, Coord{7, 8}, 2},
 			[]Coord{{7, 8}, {3, 4}}},
-		{"function:GetNearestCoord ",
-			args{[]Coord{{1, 2}, {3, 4}, {7, 8}}, Coord{7, 8}, 2},
-			[]Coord{{1, 2}, {3, 4}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -285,10 +282,13 @@ func TestGetTopStarUser(t *testing.T) {
 		// TODO: Add test cases.
 		{"function:GetTopStarUser ",
 			args{[]Record{{"UserID1", "StarID1"}, {"UserID1", "StarID2"}, {"UserID1", "StarID2"}, {"UserID2", "StarID2"}, {"UserID3", "StarID2"}}, 10},
-			[]string{}, []string{}},
+			[]string{"StarID2"}, []string{"UserID1", "UserID2", "UserID3"}},
 		{"function:GetTopStarUser ",
 			args{[]Record{{"UserID1", "StarID1"}, {"UserID1", "StarID2"}, {"UserID3", "StarID5"}, {"UserID4", "StarID3"}}, 10},
-			[]string{}, []string{}},
+			[]string{
+				"StarID1", "StarID2", "StarID5", "StarID3",
+			},
+			[]string{"UserID1", "UserID3", "UserID4"}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -18,6 +18,8 @@ ii. 将所有位于同⼀天的数据存放于同⼀个⽂件中
 2. 在硬件性能恒定(内存 16 G)的情况下，尽可能的缩短程序耗时 
 
 输出: 1. 程序耗时 2. 解体思路
+
+doc：https://docs.qq.com/doc/DWkJFa1pFendWc2lX
 """
 
 import sys
